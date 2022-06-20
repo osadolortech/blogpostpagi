@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from .models import BlogpotslList
+from .models import BlogpostList
 
 
-class Blogserilizers(serializers.ModelSerializer):
+class Blogserielizers(serializers.ModelSerializer):
     class Meta:
-        model = BlogpotslList
+        model = BlogpostList
         fields =(
             'id', 'author','title','content','created_date'
         )
