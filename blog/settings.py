@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
+from os import getenv
 from pathlib import Path
 import dotenv
 
@@ -43,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'blogapi'
+    'blogapi',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -51,7 +53,10 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 5
 }
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 MIDDLEWARE = [
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -85,10 +90,15 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+password = getenv("password")
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'myblogdb',
+        'USER': 'postgres',
+        'PASSWORD': password,
+        'HOST': '',
+        'PORT': ''
     }
 }
 
